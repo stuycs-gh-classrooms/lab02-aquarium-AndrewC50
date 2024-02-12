@@ -13,8 +13,9 @@ class Animal {
     this.h = h;
     top = t;
     bottom = b;
+    orient();
   }
-
+  
   void display() {
     image(img, position.x, position.y, w, h);
   }
@@ -34,10 +35,9 @@ class Animal {
     }
   }
   
-  boolean isOutOfPlace() {
+  void orient() {
     if((position.x <= 0 || position.x + w >= width || position.y <= top || position.y + h >= bottom)) {
-      return true;
+      velocity.y = -(abs(velocity.y));
     }
-    return false;
   }
 }

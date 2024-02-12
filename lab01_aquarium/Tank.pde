@@ -18,33 +18,27 @@ class Tank {
     CFish = new ArrayList<ClownFish>();
     Crabs = new ArrayList<Crab>();
   }
-  
+
   void display() {
     fill(35, 137, 218);
     rect(0, topTank, width, height);
     fill(246, 215, 176);
     rect(0, height, width, -floorH);
   }
-  
+
   void addAnimal(int x, int y) {
     //Animals.add(new Animal(x, y, 30, 40, loadImage("Green.png")));
     CFish.add(new ClownFish(x, y));
-    if(CFish.get(CFish.size() - 1).isOutOfPlace()) {
-      CFish.remove(CFish.size() - 1);
-    }
     Crabs.add(new Crab(x, y));
-    if(Crabs.get(Crabs.size() - 1).isOutOfPlace()) {
-      println("removed");
-      Crabs.remove(Crabs.size() - 1);
-    }
+    SpongeBobs.add(new Crab(x, y));
   }
-  
+
   void moveAnimals() {
-    for(ClownFish c: CFish) {
+    for (ClownFish c : CFish) {
       c.move();
       c.display();
     }
-    for(Crab c: Crabs) {
+    for (Crab c : Crabs) {
       c.move();
       c.display();
     }
