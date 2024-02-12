@@ -8,10 +8,5 @@ class ClownFish extends Animal {
     borderCollide();
     position.x += velocity.x;
     position.y += velocity.y * sin(radians(frameCount));
-    //swim();
-  }
-  
-  void swim() {
-    position.y+= sin(radians(frameCount));
   }
 }
