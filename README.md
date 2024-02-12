@@ -2,9 +2,9 @@
 # Aquarium Lab
 #### Name:
 #### TableBuddies+™
-- TB+ 0:
-- TB+ 1:
-- TB+ 2:
+- TB+ 0: Andrew
+- TB+ 1: Justin
+- TB+ 2: Evan
 
 ---
 ### Instructions
