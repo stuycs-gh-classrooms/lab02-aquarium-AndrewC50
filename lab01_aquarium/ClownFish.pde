@@ -1,7 +1,7 @@
 class ClownFish extends Animal {
   
   ClownFish(int x, int y) {
-    super(x, y, 40, 30, loadImage("ClownFish.jpeg"), topTank, height - floorH, 4); 
+    super(x, y, 30, int(random(20,30)), loadImage("ClownFish.jpeg"), topTank, height - floorH, 4); 
   }
   
   void move() {

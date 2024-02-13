@@ -4,11 +4,12 @@ class Tank {
   int tWidth;
   int tHeight;
   int floorHeight;
-  //ArrayList<Animal>Animals;
+  ArrayList<Animal>Animals;
   ArrayList<ClownFish> CFish;
   ArrayList<Crab> Crabs;
   ArrayList<SpongeBob> SpongeBobs;
   ArrayList<Nemo> Nemos;
+
 
   Tank(int x, int y, int w, int h, int fh) {
     tx = x;
@@ -16,7 +17,7 @@ class Tank {
     tWidth = w;
     tHeight = h;
     floorHeight = fh;
-    //Animals = new ArrayList<Animal>();
+    Animals = new ArrayList<Animal>();
     CFish = new ArrayList<ClownFish>();
     Crabs = new ArrayList<Crab>();
     SpongeBobs = new ArrayList<SpongeBob>();
@@ -28,6 +29,25 @@ class Tank {
     displayAnimals();
   }
 
+  void moveAnimals() {
+    for (int i = Animals.size() - 1; i >= 0; i--) {
+      Animals.get(i).move();
+      Animals.get(i).loseHealth();
+      if(Animals.get(i).isDead()) {
+        Animals.remove(i);
+      }
+    }
+  }
+
+  void addAnimal(int x, int y) {
+    //Animals.add(new Animal(x, y, 30, 40, loadImage("Green.png")));
+    Animals.add(new ClownFish(x, y));
+    Animals.add(new Crab(x, y));
+    Animals.add(new SpongeBob(x, y));
+    Animals.add(new Nemo(x, y));
+    removeInvalid();
+  }
+
   void displayTank() {
     fill(35, 137, 218);
     rect(0, topTank, width, height);
@@ -36,65 +56,35 @@ class Tank {
   }
 
   void displayAnimals() {
-    for (ClownFish c : CFish) {
-      c.display();
-    }
-    for (Crab c : Crabs) {
-      c.display();
-    }
-    for (SpongeBob s : SpongeBobs) {
-      s.display();
-    }
-    for (Nemo n : Nemos) {
-      n.display();
-    }
-  }
-  void addAnimal(int x, int y) {
-    //Animals.add(new Animal(x, y, 30, 40, loadImage("Green.png")));
-    addCFish(x, y);
-    addCrabs(x, y);
-    addSB(x, y);
-    addNM(x, y);
-  }
-
-  void addCFish(int x, int y) {
-    CFish.add(new ClownFish(x, y));
-    if (CFish.get(CFish.size() - 1).outOfShape()) {
-      CFish.remove(CFish.size() - 1);
+    for (int i = Animals.size() - 1; i >= 0; i--) {
+      Animals.get(i).display();
+      eat(Animals.get(i));      
     }
   }
 
-  void addCrabs(int x, int y) {
-    Crabs.add(new Crab(x, y));
-    if (Crabs.get(Crabs.size() - 1).outOfShape()) {
-      Crabs.remove(Crabs.size() - 1);
-    }
-  }
-  void addSB(int x, int y) {
-    SpongeBobs.add(new SpongeBob(x, y));
-    if (SpongeBobs.get(SpongeBobs.size() - 1).outOfShape()) {
-      SpongeBobs.remove(SpongeBobs.size() - 1);
-    }
-  }
-  void addNM(int x, int y) {
-    Nemos.add(new Nemo(x, y));
-    if (Nemos.get(Nemos.size() - 1).outOfShape()) {
-      Nemos.remove(Nemos.size() - 1);
+  void removeInvalid() {
+    int count = Animals.size() - 1;
+    while (count >= 0) {
+      if (Animals.get(count).outOfShape()) {
+        Animals.remove(count);
+      }
+      count--;
     }
   }
 
-  void moveAnimals() {
-    for (ClownFish c : CFish) {
-      c.move();
-    }
-    for (Crab c : Crabs) {
-      c.move();
-    }
-    for (SpongeBob s : SpongeBobs) {
-      s.move();
-    }
-    for (Nemo n : Nemos) {
-      n.move();
+  void eat(Animal a) {
+    for (int x = Animals.size() - 1; x >= 0; x--) {
+      Animal a1 = Animals.get(x);
+      if (a.animalCollide(a1)) {
+        if (a.area > a1.area) {
+          a.health = 100;
+          Animals.remove(x);
+        } else {
+          a1.health = 100;
+          Animals.remove(a);
+          break;
+        }
+      }
     }
   }
 }

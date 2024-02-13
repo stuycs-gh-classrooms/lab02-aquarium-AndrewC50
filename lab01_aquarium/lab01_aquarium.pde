@@ -26,17 +26,19 @@ void mouseClicked() {
   t.addAnimal(mouseX, mouseY);
 }
 
+//will only add a fish if it's in the right place
 void keyPressed() {
   if (key == '1') {
-    t.addCFish(mouseX, mouseY);
+    t.Animals.add(new ClownFish(mouseX, mouseY));
   }
   if (key == '2') {
-    t.addCrabs(mouseX, mouseY);
+    t.Animals.add(new Nemo(mouseX, mouseY));
   }
   if (key == '3') {
-    t.addSB(mouseX, mouseY);
+    t.Animals.add(new SpongeBob(mouseX, mouseY));
   }
   if (key == '4') {
-    t.addNM(mouseX, mouseY);
+    t.Animals.add(new Crab(mouseX, mouseY));
   }
+  t.removeInvalid();
 }

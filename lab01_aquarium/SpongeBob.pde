@@ -1,11 +1,18 @@
-// added class from group
+// added class from group, kept movement but moved variables to fit animal constructor
 class SpongeBob extends Animal {
   SpongeBob (int animalX, int animalY) {
-    super(animalX, animalY, 40, 40, loadImage("SpongeBob.jpg"), height - floorH, height, 5);
+    super(animalX, animalY, int(random(10,40)), int(random(10, 40)), loadImage("SpongeBob.jpg"), height - floorH, height, 5);
     velocity.y = 0;
   }
  void move() {
-   position.x += velocity.x;
    borderCollide();
+   position.x += velocity.x;
+ }
+ 
+ // dies if hits the wall twice unless eats
+ void loseHealth() {
+   if(outOfShape()) {
+     health-= 50;
+   }
  }
 }
