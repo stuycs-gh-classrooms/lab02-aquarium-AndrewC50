@@ -25,3 +25,18 @@ void draw() {
 void mouseClicked() {
   t.addAnimal(mouseX, mouseY);
 }
+
+void keyPressed() {
+  if (key == '1') {
+    t.addCFish(mouseX, mouseY);
+  }
+  if (key == '2') {
+    t.addCrabs(mouseX, mouseY);
+  }
+  if (key == '3') {
+    t.addSB(mouseX, mouseY);
+  }
+  if (key == '4') {
+    t.addNM(mouseX, mouseY);
+  }
+}

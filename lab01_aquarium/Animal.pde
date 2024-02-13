@@ -13,7 +13,6 @@ class Animal {
     this.h = h;
     top = t;
     bottom = b;
-    orient();
   }
   
   void display() {
@@ -35,9 +34,10 @@ class Animal {
     }
   }
   
-  void orient() {
+   boolean outOfShape() {
     if((position.x <= 0 || position.x + w >= width || position.y <= top || position.y + h >= bottom)) {
-      velocity.y = -(abs(velocity.y));
+      return true;
     }
+    return false;
   }
 }
