@@ -7,12 +7,15 @@ class SpongeBob extends Animal {
  void move() {
    borderCollide();
    position.x += velocity.x;
+   
  }
  
  // dies if hits the wall twice unless eats
  void loseHealth() {
-   if(outOfShape()) {
-     health-= 50;
+   if(frameCount % 6 == 0) {
+     health--;
    }
+   w = health / 2;
+   h = health / 3;
  }
 }
